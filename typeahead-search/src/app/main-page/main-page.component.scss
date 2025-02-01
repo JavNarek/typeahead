@@ -2,3 +2,30 @@
   display: flex;
   justify-content: space-around;
 }
+
+.search-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.chips-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chip {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+}
