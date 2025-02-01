@@ -3,13 +3,13 @@ import { inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { User } from '../types/user.interface';
 import { Store } from '@ngrx/store';
-import { selectCahedKeys } from '../main-page/store/search.selectors';
+import { selectCached } from '../main-page/store/search.selectors';
 
 @Injectable({ providedIn: 'root' })
 export class SearchApiService {
   private readonly httpClient = inject(HttpClient);
   private readonly store = inject(Store);
-  private readonly cacheMap = this.store.selectSignal(selectCahedKeys);
+  private readonly cacheMap = this.store.selectSignal(selectCached);
   getSearchList(query: string): Observable<User[]> {
     if (this.cacheMap().has(query)) {
       return of(this.cacheMap().get(query) as User[]);

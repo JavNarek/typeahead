@@ -15,21 +15,15 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   styleUrl: './result-list.component.scss',
   template: `
-    @if(query()){
+    @let searchResult = searchResults(); @if(query()){ @if(searchResult.length){
     <cdk-virtual-scroll-viewport class="viewport" itemSize="20">
-      <ng-container *ngIf="searchResults().length; else noData">
-        <div
-          class="viewport__item"
-          *cdkVirtualFor="let result of searchResults()"
-        >
-          <b>Name</b>: {{ result.name }}, <b>Age</b>: {{ result.age }}
-        </div>
-      </ng-container>
+      <div class="viewport__item" *cdkVirtualFor="let result of searchResult">
+        <b>Name</b>: {{ result.name }}, <b>Age</b>: {{ result.age }}
+      </div>
     </cdk-virtual-scroll-viewport>
-    }
-    <ng-template #noData>
-      <div class="no-data">No Data Available</div>
-    </ng-template>
+    } @else {
+    <div class="no-data">No Data Available</div>
+    } }
   `,
 })
 export class ResultListComponent {
