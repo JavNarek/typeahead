@@ -18,7 +18,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   selector: 'ui-search',
   standalone: true,
   styleUrl: './search.component.scss',
-  template: ` <input type="text" [formControl]="searchControl" /> `,
+  template: `
+    <input
+      type="text"
+      placeholder="Start typing"
+      [formControl]="searchControl"
+    />
+  `,
 })
 export class SearchComponent implements OnInit {
   private readonly store = inject(Store);
